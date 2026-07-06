@@ -28,6 +28,7 @@
 
 const http = require('http');
 const fs = require('fs');
+const querystring = require('querystring');
 const server = http.createServer((req,res)=>{
    fs.readFile('html/form.html','utf-8',(err,data)=>{
         
@@ -41,6 +42,29 @@ const server = http.createServer((req,res)=>{
            res.write(data);
          }  
          else if(req.url=="/submit"){
+             let dataBody = []
+            req.on('data',(chunk)=>{
+              dataBody.push(chunk)
+            });
+            req.on('end',()=>{
+               let rowdata = Buffer.concat(dataBody).toString();
+               let readabledata = querystring.parse(rowdata)
+               // console.log(readabledata);
+             let datastring = "my name is " + readabledata.firstname + " and my email is " + readabledata.email;
+                 console.log(datastring);
+               //   fs.writeFileSync("text/"+readabledata.firstname+".txt",datastring);
+               //   console.log("file created");
+
+               fs.writeFile("text/"+readabledata.firstname+".txt",datastring,'utf-8',(err)=>{
+                  if(err){
+                     res.end("internal server eror");
+                     return false;
+                  }
+                  else{
+                      console.log("file created");
+                  }
+               })
+            })
                res.write("<h1>Data submitted</h1>")
        }
            res.end()   
