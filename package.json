@@ -15,11 +15,12 @@
     "mongodb"
   ],
   "author": "Akash",
-  "type":"module",
+  "type": "module",
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",
     "express": "^5.2.1",
+    "morgan": "^1.11.0",
     "nodemon": "^3.1.14"
   }
 }
