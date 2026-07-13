@@ -34,29 +34,45 @@
 // app.listen(4200);
 // console.log("server is running on port 4200")
 
-import express from 'express'
-import path from "path"
-const app = express();
-app.get('/',(req,resp)=>{
-     const Abspath = path.resolve('view/home.html');         
-     resp.sendFile(Abspath)      
-});
-app.get('/login',(req,resp)=>{
-     const Abspath = path.resolve('view/login.html');         
-     resp.sendFile(Abspath)      
-});
-app.get('/about',(req,resp)=>{
-     const Abspath = path.resolve('view/about.html');         
-     resp.sendFile(Abspath)      
-});
-app.get('/about',(req,resp)=>{
-     const Abspath = path.resolve('view/about.html');         
-     resp.sendFile(Abspath)      
-});
-app.use((req, res) => {
-    const absPath = path.resolve("view/404.html");
+// import express from 'express'
+// import path from "path"
+// const app = express();
+// app.get('/',(req,resp)=>{
+//      const Abspath = path.resolve('view/home.html');         
+//      resp.sendFile(Abspath)      
+// });
+// app.get('/login',(req,resp)=>{
+//      const Abspath = path.resolve('view/login.html');         
+//      resp.sendFile(Abspath)      
+// });
+// app.get('/about',(req,resp)=>{
+//      const Abspath = path.resolve('view/about.html');         
+//      resp.sendFile(Abspath)      
+// });
+// app.get('/about',(req,resp)=>{
+//      const Abspath = path.resolve('view/about.html');         
+//      resp.sendFile(Abspath)      
+// });
+// app.use((req, res) => {
+//     const absPath = path.resolve("view/404.html");
 
-    res.status(404).sendFile(absPath);
+//     res.status(404).sendFile(absPath);
+// });
+// app.listen(4200);
+// console.log("server is running on port 4200")
+
+import express from "express";
+import { handleuser } from "./controller/usercontroller.js";
+
+const app = express();
+
+app.set("view engine", "ejs");
+
+// app.get("/user", (req, res) => {
+//     res.render("user");
+// });
+app.get("/user",handleuser);
+
+app.listen(4200, () => {
+    console.log("Server running on http://localhost:4200");
 });
-app.listen(4200);
-console.log("server is running on port 4200")

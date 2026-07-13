@@ -122,21 +122,92 @@
 
 //==========external middleware============
 
-import express from 'express'
-import morgan from 'morgan';
+// import express from 'express'
+// import morgan from 'morgan';
+// const app = express();
+// app.use(morgan('dev'))
+// app.get("/",(req,resp)=>{
+//         resp.send("Home page")      
+// });
+// app.get("/user",(req,resp)=>{
+//         resp.send("user page")      
+// });
+// app.get("/wait",(req,resp)=>{
+//      setTimeout(()=>{
+//    resp.send("result after 1 sec")
+//      },1000)       
+// })
+//     app.listen(4200, () => {
+//                  console.log("Server running on http://localhost:4200");
+//   });
+
+//=================error middleware===========
+
+// import express from "express";
+
+// const app = express();
+
+// app.get("/", (req, res) => {
+//     res.send("Home page");
+// });
+
+// app.get("/user", (req, res) => {
+//     res.send("User page");
+// });
+
+// app.get("/error", (req, res) => {
+//     throw new Error("Something went wrong");
+// });
+
+// function errorhandling(err, req, res, next) {
+//     res.status(err.status || 500).send("Try after sometime");
+// }
+
+// app.use(errorhandling);
+
+// app.listen(4200, () => {
+//     console.log("Server running on http://localhost:4200");
+// });
+
+//==================template engine============
+
+// import express from 'express'
+// import path from 'path'
+// const app  = express();
+// app.set("views", path.join(process.cwd(), "view"));
+// app.set("view engine", "ejs");
+// app.get("/",(req,resp)=>{
+//        resp.render("home", {
+//         name: "Akash",
+//         age: 22
+//     });   
+// });
+// app.listen(4200, () => {
+//     console.log("Server running on http://localhost:4200");
+// });
+
+//==================template engine for form submit============
+
+import express from "express";
+
 const app = express();
-app.use(morgan('dev'))
-app.get("/",(req,resp)=>{
-        resp.send("Home page")      
+
+app.set("view engine", "ejs");
+
+app.use(express.urlencoded({ extended: true }));
+
+app.get("/add-user", (req, res) => {
+    res.render("adduser");
 });
-app.get("/user",(req,resp)=>{
-        resp.send("user page")      
+
+app.post("/submituser", (req, res) => {
+    res.render("submituser", {
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+    });
 });
-app.get("/wait",(req,resp)=>{
-     setTimeout(()=>{
-   resp.send("result after 1 sec")
-     },1000)       
-})
-    app.listen(4200, () => {
-                 console.log("Server running on http://localhost:4200");
-  });
+
+app.listen(4200, () => {
+    console.log("Server running on http://localhost:4200");
+});
