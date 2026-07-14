@@ -61,18 +61,42 @@
 // app.listen(4200);
 // console.log("server is running on port 4200")
 
-import express from "express";
-import { handleuser } from "./controller/usercontroller.js";
 
-const app = express();
+//==================MVC CODE===============
+// import express from "express";
+// import { handleuser } from "./controller/usercontroller.js";
 
-app.set("view engine", "ejs");
+// const app = express();
 
-// app.get("/user", (req, res) => {
-//     res.render("user");
+// app.set("view engine", "ejs");
+
+// // app.get("/user", (req, res) => {
+// //     res.render("user");
+// // });
+// app.get("/user",handleuser);
+
+// app.listen(4200, () => {
+//     console.log("Server running on http://localhost:4200");
 // });
-app.get("/user",handleuser);
 
+//===============dynamic route===========
+import express from 'express'
+const app =  express();
+app.get('/',(req,resp)=>{
+    const users= ['anil','sam','peter','sindhu']
+    let data = ``;
+    for(let i =0;i<users.length;i++){
+        data+=`<li><a href="/user/${users[i]}">${users[i]}</a></li>`
+        console.log(users[i])
+    }
+    // resp.send("this is home page")
+    resp.send(data)
+});
+app.get("/user/:name", (req, resp)=>{
+    console.log(req.params.name);
+    const username =  req.params.name
+  resp.send(`this is ${username} profile page`)
+})
 app.listen(4200, () => {
     console.log("Server running on http://localhost:4200");
 });
