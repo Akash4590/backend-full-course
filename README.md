@@ -366,7 +366,7 @@ Backend-Series
 Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/backend-series.git
+git clone https://github.com/yourusername/backend-full-course.git
 ```
 
 Move into folder
@@ -450,10 +450,10 @@ npm run dev
 # 🤝 Connect With Me
 
 GitHub:
-https://github.com/yourusername
+https://github.com/Akash4590
 
 LinkedIn:
-https://linkedin.com/in/yourusername
+https://linkedin.com/in/akashkhan-dev
 
 ---
 
@@ -471,7 +471,7 @@ It motivates me to continue learning and sharing more backend projects.
 
 Frontend Developer → Full Stack Developer 🚀
 
-Currently learning:
+Currently completed:
 
 - Node.js
 - Express.js
